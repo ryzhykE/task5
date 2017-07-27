@@ -1,6 +1,6 @@
 <?php
 
-define('MSQ__HOST', 'localhost');
+define('MSQ_HOST', 'localhost');
 define('MSQ_USER', 'user1');
 define('MSQ_PASS', 'tuser1');
 define('MSQ_DB', 'user1');

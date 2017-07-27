@@ -1,15 +1,15 @@
 
 <?
 
-class Mysql implements iWorkData
+class Mysql 
 {
-    private = $connect;
-    private = $db;
+    private  $connect;
+    private  $db;
 
     public function __construct()
     {
-        $this->connect = mysql_connect(MSQ_HOST, MSQ_USER, MSQ_PASS);
-        $this->db = mysql_select_db(MSQ_DB);
+        $this->connect = mysql_connect('localhost','user1', 'tuser1');
+        $this->db = mysql_select_db('user1');
                 
     }
     public function saveData($key, $val)
@@ -25,5 +25,9 @@ class Mysql implements iWorkData
     {
 
     }
+    
 }
+
+$result = new Mysql();
+var_dump($result);
   
