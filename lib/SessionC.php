@@ -6,7 +6,7 @@ class SessionC implements iWorkData
 
     public function saveData($key, $val)
     {
-      return  $_SESSION[$key] = $val;
+      $_SESSION[$key] = $val;
     }
 
     public function getData($key)

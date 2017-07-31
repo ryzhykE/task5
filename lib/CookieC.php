@@ -5,7 +5,7 @@
   
      public function saveData($key, $val)
       {
-          return setcookie($key,$val);
+         setcookie($key,$val);
 
       }
  
@@ -16,8 +16,15 @@
  
       public function deleteData($key)
       {
-          setcookie($key, ' ');
-          $_COOKIE[$key];
+          if (isset($_COOKIE[$key]))
+          {
+                unset($_COOKIE[$key]);
+                return true;
+          }
+          else
+          {
+                  return false;
+          }
       }
   }
   

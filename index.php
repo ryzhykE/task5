@@ -3,15 +3,35 @@
 include_once ("conf.php");
 include_once ("lib/SessionC.php");
 include_once ("lib/CookieC.php");
-include
-session_start();
+include_once ("lib/Mysql.php");
+include_once ("lib/iWorkData.php");
+//session_start();
 
-$results = new SessionC();
+//$resCookie = new CookieC();
 
-$ress =  $results->saveData('name','result');
-$ress = $results->getData('name');
-$ress = $results->deleteData('name');
+//$resCOokieS = $resCookie->saveData('name1','result1');
+//echo $resCookieS;
 
-$resuilc = new CookieC();
+//$resCookieG = $resCookie->getData('name1');
+//echo $resCookieG;
 
-$connect = new Mysql();
+//$resCookieD = $resCookie->deleteData('name1');
+
+
+//$results = new SessionC();
+
+//$resS =  $results->saveData('name','result');
+//$resG = $results->getData('name');
+//echo $resG;
+//$resD = $results->deleteData('name');
+//echo $resD;
+
+//$resG = $results->getData('name');
+//echo $resG;
+
+
+$mysql = new Mysql();
+$result = $mysql->getData($key);
+var_dump($result);
+
+//include_once ("template/index.php");

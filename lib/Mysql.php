@@ -1,7 +1,7 @@
 
 <?
 
-class Mysql 
+class Mysql implements iWorkData
 {
     private  $connect;
     private  $db;
@@ -14,11 +14,16 @@ class Mysql
     }
     public function saveData($key, $val)
     {
+        $sql = " INSERT INTO MY_TEST (`user12`,'`testq`') VALUES ('$key', '$val')";
+        $result = mysql_query($sql, $this->connect);
     }
 
     public function getData($key)
     {
-
+        $sql = "SELECT * FROM MY_TEST";
+        $result = mysql_query($sql , $this->connect);
+        return $result
+            
     }
 
     public function deleteData($key)
@@ -28,6 +33,3 @@ class Mysql
     
 }
 
-$result = new Mysql();
-var_dump($result);
-  
