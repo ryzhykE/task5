@@ -8,13 +8,18 @@ class Mysql implements iWorkData
 
     public function __construct()
     {
-        $this->connect = mysql_connect('localhost','user1', 'tuser1');
-        $this->db = mysql_select_db('user1');
-                
+        if(! $this->connect = mysql_connect(HOST,USER,PASS))
+        {
+            throw new Exception(mysql_error());
+        }
+        if(! $this->db = mysql_select_db(DB))
+        {
+            throw new Exception(mysql_error());
+        }
     }
     public function saveData($key, $val)
     {
-        $sql = " INSERT INTO MY_TEST (`user12`,'`testq`') VALUES ('$key', '$val')";
+        $sql = "INSERT INTO " . TABLE  . " (`user12`,'`testq`') VALUES ('$key', '$val')";
         $result = mysql_query($sql, $this->connect);
     }
 

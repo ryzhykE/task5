@@ -5,7 +5,8 @@
   
      public function saveData($key, $val)
       {
-         setcookie($key,$val);
+          setcookie($key,$val);
+          $_COOKIE[$key] = $val;
 
       }
  

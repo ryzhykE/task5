@@ -16,7 +16,13 @@ class SessionC implements iWorkData
 
     public function deleteData($key)
     {
-      unset($_SESSION[$key]);
+        if($_SESSION[$key])
+        {
+            unset($_SESSION[$key]);
+            return true;
+        }
+
+        return false;
     }
 }
 
