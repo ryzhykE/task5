@@ -1,4 +1,3 @@
-
 <?
 
 class Mysql implements iWorkData
@@ -10,30 +9,58 @@ class Mysql implements iWorkData
     {
         if(! $this->connect = mysql_connect(HOST,USER,PASS))
         {
-            throw new Exception(mysql_error());
+            throw new Exception(NO_CONNECT. mysql_error());
         }
-        if(! $this->db = mysql_select_db(DB))
+        if(! mysql_select_db(DB,$this->connect))
         {
-            throw new Exception(mysql_error());
+            throw new Exception(NO_DB. mysql_error());
         }
     }
     public function saveData($key, $val)
     {
-        $sql = "INSERT INTO " . TABLE  . " (`user12`,'`testq`') VALUES ('$key', '$val')";
-        $result = mysql_query($sql, $this->connect);
+        $query = "INSERT INTO " . TABLE . " ($key) " .  " VALUES " . " ($val) ";
+
+        if (!$result = mysql_query($query, $this->connect))
+        {
+            throw new Exception(NO_ADD . mysql_error());
+        }
+        return $result;
     }
 
     public function getData($key)
     {
-        $sql = "SELECT * FROM MY_TEST";
-        $result = mysql_query($sql , $this->connect);
-        return $result
+        $query = "SELECT `key`,`data` FROM " . TABLE . " WHERE `key`= $key " ;
+
+        if (!$result = mysql_query( $query, $this->connect))
+        {
+            throw new Exception(NO_DATA . mysql_error());
+        }
+        if(is_resource($result)) {
+            $data = [];
+            while ($row = mysql_fetch_assoc($result))
+            {
+                foreach ($row as $key => $val)
+                {
+                    $data[][$key] = $val;
+                }
+            }
+            return $data;
+        }
+        else
+        {
+            return NO_DATA . mysql_error();
+        }
             
     }
 
     public function deleteData($key)
     {
-
+        $query = "DELETE FROM " . TABLE . " WHERE `key`= $key " ;
+        if (!$result = mysql_query( $query, $this->connect))
+        {
+            throw new Exception(NO_DATA . mysql_error());
+        }
+        return true;
     }
     
 }

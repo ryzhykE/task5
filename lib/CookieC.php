@@ -5,14 +5,23 @@
   
      public function saveData($key, $val)
       {
-          setcookie($key,$val);
-          $_COOKIE[$key] = $val;
-
+          if(!isset($_COOKIE[$key]))
+          {
+              setcookie($key,$val);
+              $_COOKIE[$key] = $val;
+          }
       }
  
      public function getData($key)
-      {    
-          return $_COOKIE[$key];
+      {
+          if(isset($_COOKIE[$key]))
+          {
+              return $_COOKIE[$key];
+          }
+          else
+          {
+              return COOKIE_ERR;
+          }
       }
  
       public function deleteData($key)
@@ -24,7 +33,7 @@
           }
           else
           {
-                  return false;
+                  return COOKIE_ERR_DEL;
           }
       }
   }

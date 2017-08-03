@@ -4,34 +4,36 @@ include_once ("conf.php");
 include_once ("lib/SessionC.php");
 include_once ("lib/CookieC.php");
 include_once ("lib/Mysql.php");
+include_once ("lib/Postgres.php");
 include_once ("lib/iWorkData.php");
-//session_start();
 
-//$resCookie = new CookieC();
+session_start();
 
-//$resCOokieS = $resCookie->saveData('name1','result1');
-//echo $resCookieS;
+//Cookie
+$cookies = new CookieC();
+$cookies->saveData("key","cookie");
+$cookieGet = $cookies->getData("key");
+$cookies->deleteData("key");
+$cookieDel = $cookies->getData("key");
 
-//$resCookieG = $resCookie->getData('name1');
-//echo $resCookieG;
+//Session
+$session = new SessionC();
+$session->saveData("data","session");
+$sessionGet = $session->getData("data");
+$session->deleteData("data");
+$sessionDel = $session->getData("data");
 
-//$resCookieD = $resCookie->deleteData('name1');
+//Mysql
+//$mysql = new Mysql();
+//$mysql->saveData("`key`,`data`", "'user12','test12'");
+//$mysqlGet = $mysql->getData(" 'user12' ");
+//$mysql->deleteData("'user12'");
+
+//Postgres
+$postgres = new Postgres();
+$postgres->saveData("key,data", "user12,test12");
+$postgresGet = $postgres->getData(" 'user12' ");
+$postgres->deleteData("'user12'");
 
 
-//$results = new SessionC();
-
-//$resS =  $results->saveData('name','result');
-//$resG = $results->getData('name');
-//echo $resG;
-//$resD = $results->deleteData('name');
-//echo $resD;
-
-//$resG = $results->getData('name');
-//echo $resG;
-
-
-$mysql = new Mysql();
-$result = $mysql->getData($key);
-var_dump($result);
-
-//include_once ("template/index.php");
+include_once ("template/index.php");
